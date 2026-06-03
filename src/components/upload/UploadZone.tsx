@@ -2,8 +2,9 @@
 
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, X, Image as ImageIcon, CheckCircle } from 'lucide-react';
+import { Upload, X, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface UploadedFile {
   id: string;
@@ -137,10 +138,12 @@ export function UploadZone({ onUpload, maxFiles = 10, className = "" }: UploadZo
                   </button>
                   
                   <div className="relative aspect-square mb-3 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700">
-                    <img 
+                    <Image 
                       src={fileObj.preview} 
                       alt={fileObj.file.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      unoptimized // blob URLs from URL.createObjectURL() cannot be processed by Next.js image optimization
                     />
                     {fileObj.status === 'success' && (
                       <div className="absolute inset-0 bg-green-500/20 flex items-center justify-center">
