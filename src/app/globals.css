@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Use html.dark plus descendants so Tailwind `dark:` utilities apply to both the class host and nested elements */
+/* Use `.dark` on the html element plus descendants so Tailwind `dark:` utilities apply to both the class host and nested elements */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
