@@ -36,6 +36,14 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
+  const icon = !mounted ? (
+    <span aria-hidden="true" className="block h-5 w-5" />
+  ) : theme === "dark" ? (
+    <Sun className="h-5 w-5" />
+  ) : (
+    <Moon className="h-5 w-5" />
+  );
+
   return (
     <button
       type="button"
@@ -49,7 +57,7 @@ export function ThemeToggle() {
       className="btn-icon text-slate-600 dark:text-slate-300"
       aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} mode` : "Toggle theme"}
     >
-      {!mounted ? <span aria-hidden="true" className="block h-5 w-5" /> : theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {icon}
     </button>
   );
 }
