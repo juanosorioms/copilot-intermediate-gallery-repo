@@ -7,13 +7,18 @@ type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "theme";
 
+function getStoredTheme(): Theme | null {
+  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return storedTheme === "light" || storedTheme === "dark" ? storedTheme : null;
+}
+
 function getPreferredTheme(): Theme {
   if (typeof window === "undefined") {
     return "light";
   }
 
-  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-  if (storedTheme === "light" || storedTheme === "dark") {
+  const storedTheme = getStoredTheme();
+  if (storedTheme) {
     return storedTheme;
   }
 
