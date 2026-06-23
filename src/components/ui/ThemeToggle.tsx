@@ -36,17 +36,20 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const nextTheme: Theme = theme === "dark" ? "light" : "dark";
+  const targetTheme: Theme = theme === "dark" ? "light" : "dark";
 
   return (
     <button
       type="button"
       onClick={() => {
-        setTheme(nextTheme);
-        applyTheme(nextTheme);
+        setTheme((currentTheme) => {
+          const nextTheme = currentTheme === "dark" ? "light" : "dark";
+          applyTheme(nextTheme);
+          return nextTheme;
+        });
       }}
       className="btn-icon text-slate-600 dark:text-slate-300"
-      aria-label={mounted ? `Switch to ${nextTheme} mode` : "Toggle theme"}
+      aria-label={mounted ? `Switch to ${targetTheme} mode` : "Toggle theme"}
     >
       {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>
