@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Link from "next/link";
 import { Camera } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({
                 <Link href="/upload" className="nav-link">
                   Upload
                 </Link>
+                <ThemeToggle />
                 <Link href="/admin" className="btn-primary">
                   Admin
                 </Link>
