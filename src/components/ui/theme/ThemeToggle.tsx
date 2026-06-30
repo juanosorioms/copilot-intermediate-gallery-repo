@@ -10,8 +10,6 @@ const themeOptions = [
   { value: 'system', icon: Monitor, label: 'System theme' },
 ] as const;
 
-type ThemeValue = (typeof themeOptions)[number]['value'];
-
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -32,7 +30,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(nextOption.value as ThemeValue)}
+      onClick={() => setTheme(nextOption.value)}
       className="btn-icon rounded-md p-2"
       aria-label={`Current theme: ${currentLabel}. Switch to ${nextOption.label}`}
       title={`Switch to ${nextOption.label}`}
